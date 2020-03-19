@@ -1,0 +1,24 @@
+// Created on Thu March 19 2020
+int lmotor = 0;
+int rmotor =2; 
+int rightouch = 9;
+int leftouch = 8;
+
+int main()
+{
+	while(digital(rightouch) == 0){//Go forward until Right bumper hits something
+		motor(rmotor,50);
+		motor(lmotor,50);
+		msleep(100);
+	}
+	ao(); //turns off motors for maneuvering
+	printf("TurningRight");
+	while(digital(leftouch) != 1){  //Pivots Right until both sensors are hitting wall
+		motor(lmotor,50);
+		msleep(100);
+	}
+	if(digital(rightouch) == 1 && digital(leftouch) == 1){
+		ao();
+	} //Redundancy Stopping just in case
+	return 0;
+}
