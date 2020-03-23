@@ -2,8 +2,10 @@
 
 int motorl = 0;
 int motorr = 2;
+int leftrange = 0;
 int middlerange = 1;
 int rightrange = 2;
+
 
 int main(){
 	pivotr(); //As name suggests, pivots right
@@ -13,7 +15,7 @@ int main(){
 }
 
 void pivotr(){
-	while(analog(rightrange) > 450){ //measures distance from wall for inital turn
+	while(analog(rightrange) > 460){ //measures distance from wall for inital turn
 	motor(motorl,100);
 	//msleep(50);
 	}
@@ -22,16 +24,17 @@ void pivotr(){
 
 void treadlightly(){
 	while(analog(middlerange) > 400){ // measures range from bottom wall
-	motor(motorl,50);
-	motor(motorr,50);
+	motor(motorl,90);
+	motor(motorr,90);
 	//msleep(100);
 	}
 	printf("Finished Treading \n");
 }
 
 void leftlineup(){
-	motor(motorr,100); // msleeps the left turn
-	motor(motorl,-100);
-	msleep(800);
+	while(analog(middlerange) < 1000){
+	motor(motorr,50); // msleeps the left turn
+	motor(motorl,-50);
+	}
 	printf("Finished Turning \n");
 }
