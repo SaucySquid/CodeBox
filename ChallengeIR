@@ -1,0 +1,60 @@
+int motorl = 0;
+int motorr = 2;
+int leftrange = 0;
+int middlerange = 1;
+int rightrange = 2;
+int rightreflect = 6;
+int leftreflect = 5;
+
+
+int main(){
+	pivotr(); //As name suggests, pivots right
+	treadlightly(); //Treads lightly straight down
+	leftlineup(); //lines up with black line
+	followThatLine(); //Follows line 
+	return 0;
+}
+
+void pivotr(){
+	while(analog(rightrange) > 460){ //measures distance from wall for inital turn
+	motor(motorl,100);
+	msleep(50);
+	}
+	printf("Finished Pivoting \n");
+}
+
+void treadlightly(){
+	while(analog(middlerange) > 400){ // measures range from bottom wall
+	motor(motorl,90);
+	motor(motorr,90);
+	//msleep(100);
+	}
+	printf("Finished Treading \n");
+}
+
+void leftlineup(){
+	while(analog(middlerange) < 1000){
+	motor(motorr,50); // msleeps the left turn
+	motor(motorl,-50);
+	}
+	printf("Finished Turning \n");
+}
+void followThatLine(){
+	while(analog(leftreflect) == 0){ //while the left sensor doesn't see anything...
+		motor(motorr,50);
+		motor(motorl,50);
+		msleep(50); //Forward.
+	}
+	while(analog(middlerange) > 60 ){
+		if (analog(leftreflect) > 10){ //Moves left if too right
+			motor(motorr,70);
+			motor(motorl,30);
+			msleep(5);
+		}
+		if (analog(rightreflect) > 10){//moves right if too left.
+			motor(motorr,30);
+			motor(motorl,70);
+			msleep(5);
+		}
+}
+}
