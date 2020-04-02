@@ -14,7 +14,7 @@ int linescrossed = 0;
 
 
 int main(){
-	shut_down_in(52); //Who needs counter variables? :P
+	shut_down_in(51); //Who needs counter variables? :P
 	FollowWall(); //runs the wallfollow
 	return 0;
 }
