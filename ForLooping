@@ -1,0 +1,40 @@
+int motorl = 0;
+int motorr = 2;
+int leftrange = 0;
+int middlerange = 1;
+int rightrange = 2;
+int rightreflect = 6;
+int leftreflect = 5;
+int speedfast = 100;
+int quickturn = 90;
+int slowturn = 20;
+int avgspeed = 50;
+int linescrossed = 0;
+
+int main(){
+	ThingyMaJig(); //runs the thingymajig
+	return 0;
+}
+
+void ThingyMaJig(){ //The thingymajif
+	
+	for(int i = 1; i < 7; i++){
+		forward();
+		swerve();
+		printf("Run number: %d \n", i);
+	}
+	
+}
+
+void forward(){
+	motor(motorr, 100);
+	motor(motorl, 100);
+	msleep(1000);
+}
+
+void swerve(){
+	motor(motorr, -100);
+	msleep(1000);
+}
+
+
